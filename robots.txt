@@ -1,0 +1,9 @@
+# Brindis Bistro & Bar — robots.txt
+# BUILD PHASE: indexing is blocked while the site uses placeholder content.
+User-agent: *
+Disallow: /
+
+# GO-LIVE: replace everything above with the three lines below, then deploy:
+# User-agent: *
+# Allow: /
+# Sitemap: https://www.brindisbistrobar.com/sitemap.xml

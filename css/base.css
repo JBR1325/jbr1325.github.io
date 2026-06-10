@@ -1,0 +1,192 @@
+/* =========================================================
+   BRINDIS BISTRO & BAR — base.css
+   Shared design system: tokens · reset · type · nav · footer
+   Loaded by EVERY page (homepage + subpages) BEFORE page CSS.
+   ========================================================= */
+
+:root{
+  --plum:#4A1E33;
+  --plum-deep:#2A111D;
+  --plum-ink:#1c0b13;
+  --wine:#7A2E48;
+  --terracotta:#C2683D;
+  --terracotta-text:#A4502B;  /* AA-contrast terracotta for small text on cream */
+  --saffron:#D2A24C;
+  --gold:#E4BB6A;
+  --olive:#6E7544;
+  --cream:#F6EFE3;
+  --cream-2:#EFE4D2;
+  --cream-3:#E7D8BF;
+  --ink:#241319;
+  --yolk:#F2B441;
+
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+
+  --ease-brindi:cubic-bezier(.16,1,.3,1);
+  --maxw:1280px;
+  --pad:clamp(20px,5vw,80px);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);
+  background:var(--cream);
+  color:var(--ink);
+  line-height:1.5;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+em{font-style:italic}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--saffron);color:var(--plum-deep)}
+
+/* keyboard focus — visible everywhere, on light or dark */
+:focus-visible{outline:2px solid var(--saffron);outline-offset:3px;border-radius:2px}
+
+/* visually hidden but crawlable / screen-reader accessible */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* ---------- shared type ---------- */
+.kicker{
+  font-family:var(--sans);
+  font-weight:500;
+  font-size:clamp(.7rem,1vw,.82rem);
+  letter-spacing:.42em;
+  text-transform:uppercase;
+  color:var(--terracotta-text);
+}
+.kicker.light{color:var(--gold)}
+.sect-title{
+  font-family:var(--serif);
+  font-weight:400;
+  line-height:.95;
+  letter-spacing:-.015em;
+  font-size:clamp(2.6rem,8vw,6rem);
+  color:var(--plum);
+}
+.sect-title.huge{font-size:clamp(3rem,11vw,8.5rem)}
+.sect-title em{color:var(--terracotta)}
+.sect-lede{
+  max-width:46ch;
+  font-size:clamp(1rem,1.5vw,1.22rem);
+  font-weight:300;
+  line-height:1.65;
+  color:color-mix(in srgb,var(--ink) 78%,transparent);
+}
+.sect-lede.light{color:color-mix(in srgb,var(--cream) 80%,transparent)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad);width:100%}
+
+/* ---------- film grain (shared editorial texture) ---------- */
+.grain{
+  position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode:multiply;
+}
+/* a full-screen blend layer costs paint time every scrolled frame on phones —
+   the texture is barely visible at that size anyway */
+@media (hover:none) and (pointer:coarse){
+  .grain{display:none}
+}
+
+/* =========================================================
+   SITE NAV — fixed, shared by all pages
+   (on the homepage it lives OUTSIDE #smooth-wrapper)
+   ========================================================= */
+.site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:96;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.35rem clamp(14px,3vw,28px);
+  background:color-mix(in srgb,var(--cream) 84%,transparent);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  border-bottom:1px solid color-mix(in srgb,var(--plum) 10%,transparent);
+}
+.nav-brand{
+  font-family:var(--serif);font-weight:400;font-size:1.18rem;letter-spacing:.1em;
+  color:var(--plum);display:inline-flex;align-items:baseline;gap:.45em;min-height:44px;
+  white-space:nowrap;align-self:center;
+}
+.nav-brand .amp{color:var(--terracotta-text);font-style:italic;font-size:.82em}
+.nav-links{display:flex;align-items:center;gap:clamp(.05rem,1.2vw,.8rem);min-width:0}
+.nav-links a{
+  font-family:var(--sans);font-weight:500;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  color:color-mix(in srgb,var(--ink) 86%,transparent);
+  display:inline-flex;align-items:center;min-height:44px;padding:0 .55em;
+  border-bottom:2px solid transparent;transition:color .3s,border-color .3s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--plum)}
+.nav-links a[aria-current="page"]{color:var(--plum);border-bottom-color:var(--terracotta)}
+.nav-call{white-space:nowrap;color:var(--terracotta-text)!important;font-weight:600!important}
+.nav-call:hover{color:var(--wine)!important}
+@media(max-width:980px){
+  .nav-call{display:none!important}
+}
+@media(max-width:740px){
+  .nav-brand .amp{display:none}
+  .nav-links a{font-size:.72rem;letter-spacing:.08em;padding:0 .42em}
+  .nav-brand{font-size:1.05rem;letter-spacing:.16em}
+}
+
+/* =========================================================
+   TESTIMONIALS — real guest quotes (homepage + subpages)
+   Frosted cards: readable over cream or the night sky.
+   ========================================================= */
+.quote-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(16px,2.6vw,30px)}
+.quote-card{background:color-mix(in srgb,var(--cream) 88%,transparent);border-radius:6px;padding:1.6rem 1.5rem;
+  border:1px solid color-mix(in srgb,var(--plum) 12%,transparent);
+  box-shadow:0 22px 48px -30px rgba(28,11,19,.55)}
+.quote-card blockquote{font-family:var(--serif);font-style:italic;font-weight:300;
+  font-size:clamp(1.1rem,1.9vw,1.3rem);line-height:1.5;color:var(--plum)}
+.quote-card cite{display:block;margin-top:.9rem;font-family:var(--sans);font-style:normal;
+  font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  color:var(--terracotta-text)}
+
+/* =========================================================
+   ORDER NOW — floating Toast-ordering button (all pages;
+   the homepage upgrades it to a draggable via GSAP)
+   ========================================================= */
+.order-now{position:fixed;z-index:98;right:20px;bottom:20px;display:inline-flex;align-items:center;gap:.55em;
+  background:#E0382C;color:#fff;font-family:var(--sans);font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  font-size:.78rem;padding:.95em 1.45em;border-radius:3em;cursor:grab;white-space:nowrap;
+  box-shadow:0 16px 36px -10px rgba(224,56,44,.7), 0 4px 12px -4px rgba(0,0,0,.32);
+  user-select:none;-webkit-user-select:none;touch-action:none;will-change:transform}
+.order-now:hover{background:#ef4a3d}
+.order-now:active{cursor:grabbing}
+.order-now svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.order-now .order-grip{width:13px;height:13px;margin-left:.05em;opacity:.65;
+  background:radial-gradient(circle,currentColor 1.1px,transparent 1.5px) 0 0/4.5px 4.5px;border-radius:2px}
+.order-now.static{cursor:pointer;touch-action:auto}
+@media(max-width:560px){ .order-now{font-size:.7rem;padding:.85em 1.1em;right:14px;bottom:14px;letter-spacing:.12em} }
+
+/* =========================================================
+   FOOTER — shared by all pages
+   ========================================================= */
+.foot{background:var(--plum-deep);color:var(--cream);text-align:center;padding:clamp(70px,12vh,140px) 0}
+.foot-line{font-family:var(--serif);font-weight:300;font-size:clamp(2rem,6vw,4rem);margin-bottom:2.8rem}
+.foot-line em{color:var(--gold)}
+.foot-logos{display:flex;align-items:center;justify-content:center;gap:clamp(20px,5vw,60px);margin-bottom:2.6rem;flex-wrap:wrap}
+.foot-brindis{width:min(56vw,250px);height:auto;filter:brightness(0) invert(1);opacity:.96}
+.foot-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:.4rem 1.8rem;margin-bottom:2rem}
+.foot-nav a{
+  font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;
+  color:color-mix(in srgb,var(--cream) 78%,transparent);
+  display:inline-flex;align-items:center;min-height:44px;padding:0 .3em;
+}
+.foot-nav a:hover{color:var(--gold)}
+.foot-hours{margin-bottom:1.6rem;font-size:.92rem;letter-spacing:.08em;
+  color:color-mix(in srgb,var(--cream) 76%,transparent)}
+.foot-hours b{color:var(--gold);font-weight:500}
+.foot-meta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;align-items:center;
+  font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--cream) 70%,transparent)}
+.foot-meta a:hover{color:var(--gold)}
+.foot-meta .dot{color:var(--terracotta)}
+.foot-credit{margin-top:1.6rem;font-family:var(--serif);font-style:italic;
+  color:color-mix(in srgb,var(--gold) 70%,transparent);font-size:.95rem}
+@media(max-width:560px){
+  .foot-brindis{width:min(64vw,210px)}
+}

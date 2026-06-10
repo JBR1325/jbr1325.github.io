@@ -1,0 +1,12 @@
+{
+  "name": "Brindis Bistro & Bar",
+  "short_name": "Brindis",
+  "description": "Wood-fired Mediterranean & Turkish restaurant and bar in Green Valley, Arizona.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2A111D",
+  "theme_color": "#4A1E33",
+  "icons": [
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

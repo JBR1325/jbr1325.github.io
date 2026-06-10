@@ -1,0 +1,138 @@
+/* =========================================================
+   BRINDIS BISTRO & BAR — site.css
+   Subpage components (menu · about · events · contact · hours)
+   Loads AFTER base.css. No GSAP on these pages — reveals are
+   IntersectionObserver + CSS, gated by prefers-reduced-motion.
+   ========================================================= */
+
+/* Senior-friendly reading size on content pages */
+body.subpage{font-size:1.125rem;line-height:1.65}
+
+/* push content below the fixed nav */
+.subpage main{padding-top:clamp(64px,9vh,84px)}
+
+/* ---------- page hero ---------- */
+.page-hero{
+  text-align:center;padding:clamp(40px,8vh,90px) var(--pad) clamp(30px,6vh,60px);
+  background:
+    radial-gradient(90% 120% at 50% -20%, color-mix(in srgb,#cfe1ef 55%,transparent) 0%, transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb,var(--cream-2) 70%,transparent), transparent 80%);
+}
+.page-hero .sect-title{margin:.6rem auto .2rem;font-size:clamp(2.4rem,6.5vw,4.6rem)}
+.page-hero .sect-lede{margin:1.2rem auto 0}
+.crumbs{display:flex;justify-content:center;gap:.6em;flex-wrap:wrap;margin-bottom:1.4rem;
+  font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500;
+  color:color-mix(in srgb,var(--ink) 60%,transparent)}
+.crumbs a{color:var(--terracotta-text);display:inline-flex;align-items:center;min-height:24px}
+.crumbs a:hover{color:var(--wine)}
+.crumbs .sep{color:color-mix(in srgb,var(--ink) 35%,transparent)}
+
+/* ---------- common blocks ---------- */
+.page-section{padding:clamp(34px,6vh,70px) 0}
+.page-section.tint{background:linear-gradient(180deg,
+  color-mix(in srgb,var(--cream-2) 55%,transparent),
+  color-mix(in srgb,var(--cream-2) 20%,transparent))}
+.narrow{max-width:840px;margin-inline:auto}
+.prose p{margin-bottom:1.25em;font-weight:300;
+  color:color-mix(in srgb,var(--ink) 88%,transparent)}
+.prose strong{font-weight:500}
+.prose a{color:var(--terracotta-text);text-decoration:underline;text-underline-offset:3px}
+.prose a:hover{color:var(--wine)}
+.pull-quote{font-family:var(--serif);font-weight:300;font-style:italic;text-align:center;
+  font-size:clamp(1.5rem,3.4vw,2.3rem);color:var(--plum);margin:2.2rem auto;max-width:18ch;line-height:1.25}
+.pull-quote em{color:var(--terracotta);font-style:italic}
+
+.photo-band{border-radius:4px;overflow:hidden;box-shadow:0 30px 60px -34px rgba(42,17,29,.55);margin:1.8rem 0}
+.photo-band img{width:100%;height:auto;display:block}
+
+/* buttons */
+.btn-row{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:1.8rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;min-height:48px;
+  font-family:var(--sans);font-weight:500;letter-spacing:.14em;text-transform:uppercase;font-size:.82rem;
+  color:var(--plum-deep);background:var(--gold);padding:.9em 2em;border-radius:3em;
+  transition:.35s var(--ease-brindi)}
+.btn:hover{background:var(--saffron);transform:translateY(-2px)}
+.btn.dark{background:var(--plum);color:var(--cream)}
+.btn.dark:hover{background:var(--wine)}
+.btn.outline{background:transparent;color:var(--plum);
+  border:1.5px solid color-mix(in srgb,var(--plum) 45%,transparent)}
+.btn.outline:hover{background:var(--plum);color:var(--cream)}
+
+/* ---------- MENU page ---------- */
+.menu-note{display:flex;justify-content:center;gap:1.6rem;flex-wrap:wrap;margin-top:1.2rem;
+  font-size:.92rem;letter-spacing:.06em;color:color-mix(in srgb,var(--ink) 72%,transparent)}
+.menu-note .vg{color:var(--olive);font-weight:600}
+.menu-section{padding:clamp(28px,5vh,56px) 0;border-top:1px solid color-mix(in srgb,var(--plum) 12%,transparent)}
+.menu-section:first-of-type{border-top:none}
+.menu-section-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  flex-wrap:wrap;margin-bottom:.4rem}
+.menu-section-head h2{font-family:var(--serif);font-weight:400;color:var(--plum);
+  font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.05}
+.menu-section-head .sub{font-size:.86rem;letter-spacing:.22em;text-transform:uppercase;
+  font-weight:500;color:var(--terracotta-text)}
+.menu-section-lede{font-weight:300;max-width:60ch;margin-bottom:1.6rem;
+  color:color-mix(in srgb,var(--ink) 74%,transparent)}
+.menu-list{list-style:none}
+.menu-item{display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:baseline;
+  padding:.85rem 0;border-bottom:1px dashed color-mix(in srgb,var(--plum) 20%,transparent)}
+.menu-item:last-child{border-bottom:none}
+.mi-name{font-family:var(--serif);font-size:clamp(1.25rem,2.2vw,1.55rem);color:var(--plum)}
+.mi-name .tag{margin-left:.55em;vertical-align:.18em}
+.mi-desc{grid-column:1;font-weight:300;font-size:1.02rem;max-width:56ch;margin-top:.2rem;
+  color:color-mix(in srgb,var(--ink) 75%,transparent)}
+.mi-price{font-family:var(--serif);font-size:1.3rem;color:var(--terracotta-text);white-space:nowrap}
+.tag{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  color:var(--olive);border:1px solid color-mix(in srgb,var(--olive) 50%,transparent);
+  padding:.2em .6em;border-radius:2em}
+.menu-cols{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(40px,6vw,90px)}
+@media(max-width:760px){.menu-cols{grid-template-columns:1fr}}
+.printed-menu{margin-top:.6rem;font-size:.95rem}
+.printed-menu a{color:var(--terracotta-text);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:840px;margin-inline:auto}
+.faq details{border-bottom:1px solid color-mix(in srgb,var(--plum) 16%,transparent)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;
+  list-style:none;padding:1.05rem .2rem;font-family:var(--serif);font-size:clamp(1.15rem,2vw,1.4rem);
+  color:var(--plum);min-height:48px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-family:var(--sans);font-size:1.5rem;line-height:1;
+  color:var(--terracotta-text);transition:transform .3s var(--ease-brindi);flex:0 0 auto}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .faq-a{padding:0 .2rem 1.2rem;font-weight:300;max-width:62ch;
+  color:color-mix(in srgb,var(--ink) 80%,transparent)}
+.faq .faq-a a{color:var(--terracotta-text);text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- CONTACT cards ---------- */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(16px,2.4vw,28px)}
+.info-card{background:color-mix(in srgb,#fff 55%,transparent);
+  border:1px solid color-mix(in srgb,var(--plum) 12%,transparent);
+  border-radius:6px;padding:1.6rem 1.5rem;box-shadow:0 18px 40px -30px rgba(42,17,29,.4)}
+.info-card .kicker{display:block;margin-bottom:.7rem}
+.info-card .big{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.7rem);color:var(--plum);line-height:1.3}
+.info-card a.big:hover{color:var(--wine)}
+.info-card p{margin-top:.5rem;font-weight:300;font-size:1rem;color:color-mix(in srgb,var(--ink) 74%,transparent)}
+.info-card .btn{margin-top:1.1rem;font-size:.74rem;padding:.8em 1.5em}
+
+/* hours table */
+.hours-table{width:100%;max-width:560px;margin:0 auto;border-collapse:collapse}
+.hours-table th,.hours-table td{padding:.8rem .4rem;text-align:left;
+  border-bottom:1px dashed color-mix(in srgb,var(--plum) 20%,transparent)}
+.hours-table th{font-family:var(--sans);font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  font-size:.86rem;color:var(--terracotta-text)}
+.hours-table td{font-family:var(--serif);font-size:1.25rem;color:var(--plum)}
+.hours-table tr.closed td{color:color-mix(in srgb,var(--ink) 55%,transparent);font-style:italic}
+.hours-note{text-align:center;margin-top:1.4rem;font-size:1rem;font-weight:300;
+  color:color-mix(in srgb,var(--ink) 75%,transparent)}
+
+/* (testimonial .quote-strip / .quote-card styles live in base.css — shared with the homepage) */
+
+/* ---------- 404 ---------- */
+.lost{min-height:72vh;display:grid;place-items:center;text-align:center;padding:var(--pad)}
+.lost .sect-title{margin:.6rem 0 1rem}
+
+/* ---------- reveals (IntersectionObserver adds .rv-in) ---------- */
+@media(prefers-reduced-motion:no-preference){
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-brindi),transform .8s var(--ease-brindi)}
+  .rv.rv-in{opacity:1;transform:none}
+}

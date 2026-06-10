@@ -1,0 +1,30 @@
+# Build tooling & generated artifacts (these live locally, not on the deployed site)
+build-standalone.js
+brindis-standalone.html
+make-qr.py
+brindis-qr.png
+brindis-qr.svg
+brindis-qr-bw.png
+brindis-share-card.html
+
+# Image-generation tooling — NEVER commit (may carry API keys); raw outputs are temporary
+gen-images.py
+process-images.py
+_imgtest.py
+.gemini-key
+raw-images/
+
+# Loose originals / archives that are NOT part of the deployed site
+gsap-public.zip
+LogoAI1.jpg
+~~~JB_Logo1.png
+menu-2-high.webp
+menu-3-high.webp
+menu-new-1-high-copy-high.webp
+New Text Document.txt
+.claude/
+process-real.py
+Launch-Brindis-Site.bat
+
+# Local ops docs & launchers (not for the public repo)
+GO-LIVE.md
